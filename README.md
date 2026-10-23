@@ -573,3 +573,9 @@ This project builds upon the following works:
   howpublished = {\url{https://github.com/Aratako/Irodori-TTS}}
 }
 ```
+
+## nonWatermark Fork
+
+This fork removes SilentCipher model loading and watermark post-processing from the CLI and both Gradio apps. Generated audio is returned after codec decoding and optional tail trimming; no extra flag is needed. SilentCipher is no longer a dependency. The automatic watermarking descriptions above are retained from upstream and do not apply to this fork.
+
+This change prevents adding a SilentCipher watermark during generation; it does not remove watermarks from existing audio files. See [CHANGELOG.md](CHANGELOG.md) and [NOTES.md](NOTES.md) for the fork's changes and implementation notes.
