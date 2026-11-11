@@ -6,6 +6,8 @@
 
 Training and inference code for **Irodori-TTS**, a Flow Matching-based Text-to-Speech model. The architecture and training design largely follow [Echo-TTS](https://jordandarefsky.com/blog/2025/echo/), using [DACVAE](https://github.com/facebookresearch/dacvae) continuous latents as the generation target.
 
+This fork generates audio without SilentCipher watermarking in the CLI and both Gradio apps. See [installation](#installation) to get started.
+
 For an OpenAI-compatible inference API server, see [Irodori-TTS-Server-nonWatermark](https://github.com/Shuichi346/Irodori-TTS-Server-nonWatermark). 
 
 ~~For an OpenAI-compatible inference API server, see [Irodori-TTS-Server](https://github.com/Aratako/Irodori-TTS-Server).~~
@@ -55,8 +57,10 @@ The nonWatermark fork requires Python 3.13 or later. To install this fork for ma
 ```bash
 git clone https://github.com/Shuichi346/Irodori-TTS-nonWatermark.git
 cd Irodori-TTS-nonWatermark
-uv sync --locked --extra cpu
+uv sync --locked --python 3.13 --extra cpu
 ```
+
+For an existing fork checkout, run the same sync command from the repository root after updating.
 
 The upstream installation instructions follow.
 
@@ -98,6 +102,23 @@ not provide `triton.language` for the `transformers` to `torch._dynamo` import
 path. This was validated with AMD GPU inference.
 
 ## Quick Start
+
+### First WAV on macOS
+
+Generate a short WAV with the MeanFlow checkpoint using text alone.
+
+```bash
+uv run --no-sync python infer.py \
+  --hf-checkpoint Aratako/Irodori-TTS-v4.1-Small-MF \
+  --model-device cpu \
+  --codec-device cpu \
+  --text "こんにちは。これは音声合成のテストです。" \
+  --no-ref \
+  --seconds 2 \
+  --output-wav outputs/sample.wav
+```
+
+On Apple Silicon with MPS available, set `--model-device` to `mps` and keep `--codec-device` set to `cpu`.
 
 ### Simple Inference
 

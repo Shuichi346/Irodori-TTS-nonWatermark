@@ -6,7 +6,7 @@ The upstream runtime routes single requests through `synthesize_batch`. `_finish
 
 SentencePiece 0.1.99 lacks CPython 3.13 wheels. Both dependency manifests require the 0.2 series, and the lockfile no longer includes dependency branches for Python below 3.13.
 
-On macOS with Python 3.13.15, the locked CPU extra installed cleanly. Real-model smoke checks passed for MeanFlow CLI output, two-request MeanFlow batching, and RF length-check resynthesis on CPU and MPS (CPU codec). The batch produced finite mono waveforms of the expected lengths and reported no watermark stage.
+On macOS with Python 3.13.15, the locked CPU extra installed cleanly. MeanFlow CLI synthesis and two-request batching passed on CPU. The batch produced finite mono waveforms of the expected lengths and reported no watermark stage. The optional two-pass length check resynthesized audio with the RF v4.1-Small checkpoint on CPU and on MPS with the CPU codec. Ruff and the lockfile consistency check passed.
 
 ## 2026-10-23 — Inference without SilentCipher
 

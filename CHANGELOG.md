@@ -6,6 +6,7 @@
 
 - Merged upstream through `3822056`, including cross-request batch synthesis, reference latent caching, rare-token splitting, configurable SDPA priority, and the optional two-pass length check. Kept SilentCipher out of single-request and batch inference.
 - Raised the minimum and default Python version to 3.13 and updated SentencePiece to the 0.2 series for compatible wheels.
+- Documented the locked Python 3.13 setup and added a text-only CLI quick start for macOS.
 
 ## 2026-10-23
 
