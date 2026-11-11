@@ -1,5 +1,13 @@
 # Notes
 
+## 2026-11-11 — Upstream inference and Python 3.13
+
+The upstream runtime routes single requests through `synthesize_batch`. `_finish_request` returns the decoded, optionally trimmed audio directly for each request. Keep this path free of SilentCipher and preserve the DACVAE mono passthrough described below.
+
+SentencePiece 0.1.99 lacks CPython 3.13 wheels. Both dependency manifests require the 0.2 series, and the lockfile no longer includes dependency branches for Python below 3.13.
+
+On macOS with Python 3.13.15, the locked CPU extra installed cleanly. Real-model smoke checks passed for MeanFlow CLI output, two-request MeanFlow batching, and RF length-check resynthesis on CPU and MPS (CPU codec). The batch produced finite mono waveforms of the expected lengths and reported no watermark stage.
+
 ## 2026-10-23 — Inference without SilentCipher
 
 `InferenceRuntime.__init__` previously constructed a SilentCipher model, and `synthesize` encoded every decoded candidate when that model was available. Removing both paths avoids model-loading overhead and the per-generation watermark stage across `infer.py`, `gradio_app.py`, and `gradio_app_voicedesign.py`.

@@ -50,6 +50,16 @@ Audio is represented as continuous latent sequences via the codec configured by 
 
 ## Installation
 
+The nonWatermark fork requires Python 3.13 or later. To install this fork for macOS CPU/MPS:
+
+```bash
+git clone https://github.com/Shuichi346/Irodori-TTS-nonWatermark.git
+cd Irodori-TTS-nonWatermark
+uv sync --locked --extra cpu
+```
+
+The upstream installation instructions follow.
+
 ```bash
 git clone https://github.com/Aratako/Irodori-TTS.git
 cd Irodori-TTS
@@ -575,6 +585,13 @@ This project builds upon the following works:
   howpublished = {\url{https://github.com/Aratako/Irodori-TTS}}
 }
 ```
+
+## Sponsors
+
+Thank you to our sponsors for supporting the development of Irodori-TTS!
+
+- [オナカユル](https://github.com/onaka-yurusugi)
+- [黒神](https://github.com/kokushin)
 
 ## nonWatermark Fork
 
